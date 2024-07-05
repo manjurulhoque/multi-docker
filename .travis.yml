@@ -15,3 +15,9 @@ after_success:
   - docker build -t rumi/nginx ./nginx
   - docker build -t rumi/server ./server
   - docker build -t rumi/worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push rumi/client
+  - docker push rumi/nginx
+  - docker push rumi/server
+  - docker push rumi/worker
