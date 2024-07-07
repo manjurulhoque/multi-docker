@@ -10,13 +10,13 @@ script:
   - docker run -e CI=true rumi/docker-react npm run test
 
 after_success:
-  - docker build -t rumi/client ./client
-  - docker build -t rumi/nginx ./nginx
-  - docker build -t rumi/server ./server
-  - docker build -t rumi/worker ./worker
+  - docker build -t manjurulhoque/client ./client
+  - docker build -t manjurulhoque/nginx ./nginx
+  - docker build -t manjurulhoque/server ./server
+  - docker build -t manjurulhoque/worker ./worker
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push rumi/client
-  - docker push rumi/nginx
-  - docker push rumi/server
-  - docker push rumi/worker
+  - docker push manjurulhoque/client
+  - docker push manjurulhoque/nginx
+  - docker push manjurulhoque/server
+  - docker push manjurulhoque/worker
