@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": "2",
+  "ContainerDefinitions": [
+    {
+      "Name": "client",
+      "Image": "docker.io/manjurulhoque/client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "Name": "server",
+      "Image": "docker.io/manjurulhoque/server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "Name": "worker",
+      "Image": "docker.io/manjurulhoque/worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "Name": "nginx",
+      "Image": "docker.io/manjurulhoque/nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}

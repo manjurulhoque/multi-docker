@@ -9,6 +9,18 @@ before_install:
 script:
   - docker run -e CI=true rumi/docker-react npm run test
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-381492024252"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
 after_success:
   - docker build -t manjurulhoque/client ./client
   - docker build -t manjurulhoque/nginx ./nginx
